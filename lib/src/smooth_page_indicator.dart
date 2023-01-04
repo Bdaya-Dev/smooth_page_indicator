@@ -129,8 +129,8 @@ class SmoothIndicator extends StatelessWidget {
         count,
         offset,
       );
-      if (index != -1 && index != offset.toInt()) {
-        onDotClicked?.call(index);
+      if (index > 0) {
+        onDotClicked?.call(index);  
       }
     }
   }
