@@ -82,9 +82,6 @@ class SmoothIndicator extends StatelessWidget {
   /// on dot clicked callback
   final OnDotClicked? onDotClicked;
 
-  /// canvas size
-  final Size _size;
-
   SmoothIndicator({
     Key? key,
     required this.offset,
@@ -93,11 +90,7 @@ class SmoothIndicator extends StatelessWidget {
     this.effect = const WormEffect(),
     this.textDirection,
     this.onDotClicked,
-  })  :
-        // different effects have different sizes
-        // so we calculate size based on the provided effect
-        _size = effect.calculateSize(count),
-        super(key: key);
+  })  : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -114,7 +107,7 @@ class SmoothIndicator extends StatelessWidget {
       child: GestureDetector(
         onTapUp: _onTap,
         child: CustomPaint(
-          size: _size,
+          size: effect.calculateSize(count),
           // rebuild the painter with the new offset every time it updates
           painter: effect.buildPainter(count, offset),
         ),
